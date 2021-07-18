@@ -1,0 +1,142 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roomba - Dashboard</title>
+
+  <!-- request CSS from the ESP8266 web server -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="favicon.png">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default navbar-static-top bg-light" id="top" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://www.irobot.com" target="_blank"><img src="images/irobot.png"
+																						   style="width: 97px; height: 22px;" /></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li class="active"><a href="/" class="bg-light" title="Home"><span class="glyphicon glyphicon-dashboard"></span> Home <span
+                class="sr-only bg-light">(current)</span></a></li>
+		  <li class="dropdown"><a class="dropdown-toggle bg-light" data-toggle="dropdown" href="#" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span> Tools<span class="caret"></span></a><ul class="dropdown-menu bg-light"><li><a href="/firmware.htm"><span class="glyphicon glyphicon-upload"></span> Firmware</a></li><li><a href="/filemanager.htm"><span class="glyphicon glyphicon-file"></span> File manager</a></li><li><a href="/debugger.htm"><span class="glyphicon glyphicon-transfer"></span> Debugger</a></li><li><a href="/scheduler.htm"><span class="glyphicon glyphicon-calendar"></span> Scheduler</a></li></ul></li>
+          <li><a class="bg-light" href="/settings.htm" title="Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+          <li>
+            <a>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+                <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+              </div>
+              <script src="js/dark-mode-switch.min.js"></script>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="https://github.com/visualdeath/roomba-controller">
+              <img style="height: 16px;" src="images/github.ico" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="container" class="container">
+	  
+	  <div id="column-left" class="pull-left">
+		  <div id="roomba-sensors" class="metabox">
+			  <div class="metabox-heading">Sensors</div>
+			  <div class="metabox-body">
+				  <ul id="sensor-list" class="sensor-list">
+					  <li>Field:<span>value</span></li>
+					  <li>Field:<span>value</span></li>
+					  <li>Field:<span>value</span></li>
+					  <li>Field:<span>value</span></li>
+					  <li>Field:<span>value</span></li>
+					  <li>Field:<span>value</span></li>
+					  <li>Field:<span>value</span></li>
+					  <li>Field:<span>value</span></li>
+					  <li>Field:<span>value</span></li>
+				  </ul>
+			  </div>
+			  <div class="metabox-footer"></div>
+		  </div>
+	  </div>
+	  <div id="column-right" class="pull-right">
+		  <div id="roomba-user-controls" class="metabox">
+			  <div class="metabox-heading">User's Remote</div>
+			  <div class="metabox-body">
+				  <div class="four-column"><button class="btn-block btn-lg btn-success" id="btn-clean">Clean</button></div>
+			    <div class="four-column"><button class="btn-block btn-lg btn-info" id="btn-spot">Spot</button></div>
+			    <div class="four-column"><button class="btn-block btn-lg btn-warning" id="btn-dock">Dock</button></div>
+				  <div class="four-column"><button class="btn-block btn-lg btn-danger" id="btn-stop">Stop</button></div>
+			  </div>
+			  <div class="metabox-footer"></div>
+		  </div>
+		  
+		  <div id="roomba-driver-controls" class="metabox">
+			  <div class="metabox-heading">Driver's Remote</div>
+			  <div class="metabox-body">
+				  <div class="three-column">
+					  <button class="btn-info btn-driver" id="btn-main-brush">Main<br>Brush</button>
+					  <button class="btn-success btn-driver" id="btn-left-15">Left<br>15°</button>
+					  <button class="btn-warning btn-driver" id="btn-left-45">Left<br>45°</button>
+					  <button class="btn-danger btn-driver" id="btn-left-90">Left<br>90°</button>
+				  </div>
+				  <div class="three-column">
+					  <button class="btn-info btn-driver" id="btn-vacuum">Vacuum</button>
+					  <button class="btn-default btn-driver" id="btn-forward">Forward</button>
+					  <button class="btn-default btn-block btn-driver" id="btn-backwards">Backwards</button>
+					  <button class="btn-block btn-primary" id="btn-start-drive">Start Driver Mode</button>
+				  </div>
+				  <div class="three-column">
+					  <button class="btn-info btn-driver" id="btn-side-brush">Side<br>Brush</button>
+					  <button class="btn-success btn-driver" id="btn-right-15">Right<br>15°</button>
+					  <button class="btn-warning btn-driver" id="btn-right-45">Right<br>45°</button>
+					  <button class="btn-danger btn-driver" id="btn-right-90">Right<br>90°</button>
+				  </div>
+			  </div>
+			  <div class="metabox-footer"></div>
+		  </div>
+	  </div>
+
+  </div>
+
+  <nav class="navbar navbar-default navbar-fixed-bottom bg-light">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <a href="/" aria-label="Refresh" title="Refresh">
+          <span class="glyphicon glyphicon-refresh navbar-brand" style="font-size: 14px;" id="btnRefresh"></span>
+        </a>
+        <div class="navbar-header">
+          <p class="navbar-text" id="status">Loading, please wait...</p>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- request js from the ESP8266 web server -->
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+  <script src="js/minicolors.min.js"></script>
+
+  <script src="js/app.js"></script>
+
+</body>
+
+</html>

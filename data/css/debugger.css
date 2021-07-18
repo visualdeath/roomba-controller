@@ -1,0 +1,223 @@
+html {
+    height: 100%;
+}
+body {
+    height: 100%;
+}
+#container   {
+    margin-bottom: 10px;
+    height: calc( 100% - 100px);
+}
+#terminal {
+    width: 100%;
+    background-color: #000;
+    height: 100%;
+    overflow: scroll;
+    overflow-x: hidden;
+    overflow-wrap: word-break;
+    padding: 5px;
+    color: #fff;
+	font-size: .8em;
+}
+#terminal p {
+    margin: 0;
+	color: rgb(229,229,229);
+}
+#terminal p.console {
+	color: rgb(0,205,205);
+}
+#terminal p.system {
+	color: rgb(255,255,255);
+}
+#terminal p.error {
+	color: rgb(229,229,229);
+	background-color: rgb(205,0,0);
+	font-weight: bold;
+}
+#terminal p.sent {
+	color: rgb(205,0,205);
+}
+#container .terminal-controls {
+    padding-right: 5px;
+    padding-bottom: 5px;
+}
+#container .terminal-controls .control {
+    display: inline-block;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+}
+#container .terminal-controls.top .control {
+	maring-left: 0;
+    margin-bottom: 0;
+}
+#container .terminal-controls .control input[type="text"] {
+	width: 30em;
+}
+#container .terminal-controls .control.logLevel input[type="radio"] {
+	opacity: 0;
+	position: fixed;
+	width: 0;
+}
+#container .terminal-controls .control.logLevel label {
+	display: inline-block;
+	background-color: #ddd;
+	padding: 5px 10px;
+	font-size: 1em;
+	border: 2px solif #444;
+	border-radius: 6px;
+}
+#container .terminal-controls .control.logLevel label:hover {
+	background-color: #204d74;
+	color: #fff;
+}
+#container .terminal-controls .control.logLevel input[type="radio"]:focus + label {
+	border: 2px dashed #444;
+}
+#container .terminal-controls .control.logLevel input[type="radio"]:checked + label {
+	background-color: #599AD1;
+	border-color: #4c4;
+	color: #fff;
+}
+.align-right {
+	float: right;
+}
+
+/*
+ANSI CODES: based on information obtained
+https://stackoverflow.com/questions/4842424/list-of-ansi-color-escape-sequences
+*/
+.ansi-1 {
+	font-weight: bold;
+}
+.ansi-2 {
+	font-weight: 500;
+}
+.ansi-3 {
+	font-style: italic;
+}
+.ansi-4 {
+	text-decoration: underline;
+}
+.ansi-5 {
+	animation: blink-animation 1s steps(5, start) infinite;
+	-webkit-animation: blink-animation 1s steps(5, start) infinite;
+}
+.ansi-6 {
+	animation: blink-animation .4s steps(5, start) infinite;
+	-webkit-animation: blink-animation .4s steps(5, start) infinite;
+}
+@keyframes blink-animation {
+	to {
+		visibility: hidden;
+	}
+}
+@-webkit-keyframes blink-animation {
+	to {
+		visibility: hidden;
+	}
+}
+.ansi-9 {
+	text-decoration: line-through;
+}
+
+.ansi-30 {
+	color: rgb(0,0,0);
+}
+.ansi-31 {
+	color: rgb(205,0,0);
+}
+.ansi-32 {
+	color: rgb(0,205,0);
+}
+.ansi-33 {
+	color: rgb(205,205,0);
+}
+.ansi-34 {
+	color: rgb(0,0,238);
+}
+.ansi-35 {
+	color: rgb(205,0,205);
+}
+.ansi-36 {
+	color: rgb(0,205,205);
+}
+.ansi-37 {
+	color: rgb(229,229,229);
+}
+
+.ansi-40 {
+	background-color: rgb(0,0,0);
+}
+.ansi-41 {
+	background-color: rgb(205,0,0);
+}
+.ansi-42 {
+	background-color: rgb(0,205,0);
+}
+.ansi-43 {
+	background-color: rgb(205,205,0);
+}
+.ansi-44 {
+	background-color: rgb(0,0,238);
+}
+.ansi-45 {
+	background-color: rgb(205,0,205);
+}
+.ansi-46 {
+	background-color: rgb(0,205,205);
+}
+.ansi-47 {
+	background-color: rgb(229,229,229);
+}
+
+.ansi-90 {
+	color: rgb(127,127,127);
+}
+.ansi-91 {
+	color: rgb(255,0,0);
+}
+.ansi-92 {
+	color: rgb(0,255,0);
+}
+.ansi-93 {
+	color: rgb(255,255,0);
+}
+.ansi-94 {
+	color: rgb(92,92,255);
+}
+.ansi-95 {
+	color: rgb(255,0,255);
+}
+.ansi-96 {
+	color: rgb(0,255,255);
+}
+.ansi-97 {
+	color: rgb(255,255,255);
+}
+
+.ansi-100 {
+	background-color: rgb(127,127,127);
+}
+.ansi-101 {
+	background-color: rgb(255,0,0);
+}
+.ansi-102 {
+	background-color: rgb(0,255,0);
+}
+.ansi-103 {
+	background-color: rgb(255,255,0);
+}
+.ansi-104 {
+	background-color: rgb(92,92,255);
+}
+.ansi-105 {
+	background-color: rgb(255,0,255);
+}
+.ansi-106 {
+	background-color: rgb(0,255,255);
+}
+.ansi-107 {
+	background-color: rgb(255,255,255);
+}

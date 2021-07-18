@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Roomba - Scheduler</title>
+
+  <!-- request CSS from the ESP8266 web server -->
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+
+  <link rel="stylesheet" href="css/styles.css">
+  <link rel="icon" href="favicon.png">
+</head>
+
+<body>
+
+  <nav class="navbar navbar-default navbar-static-top bg-light" id="top" role="banner">
+    <div class="container">
+      <div class="navbar-header">
+        <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar-collapse-1"
+          aria-expanded="false">
+          <span class="sr-only">Toggle navigation</span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="https://www.irobot.com" target="_blank"><img src="images/irobot.png"
+																						   style="width: 97px; height: 22px;" /></a>
+      </div>
+      <div class="collapse navbar-collapse" id="navbar-collapse-1">
+        <ul class="nav navbar-nav">
+          <li><a href="/" class="bg-light" title="Home"><span class="glyphicon glyphicon-dashboard"></span> Home</a></li>
+		  <li class="dropdown active"><a class="dropdown-toggle bg-light" data-toggle="dropdown" href="#" aria-expanded="false"><span class="glyphicon glyphicon-wrench"></span> Tools<span class="caret"></span></a><ul class="dropdown-menu bg-light"><li><a href="/firmware.htm"><span class="glyphicon glyphicon-upload"></span> Firmware</a></li><li><a href="/filemanager.htm"><span class="glyphicon glyphicon-file"></span> File manager</a></li><li><a href="/debugger.htm"><span class="glyphicon glyphicon-transfer"></span> Debugger</a></li><li class="active"><a href="/scheduler.htm"><span class="glyphicon glyphicon-calendar"></span> Scheduler <span
+                class="sr-only bg-light">(current)</span></a></li></ul></li>
+          <li><a class="bg-light" href="/settings.htm" title="Settings"><span class="glyphicon glyphicon-cog"></span> Settings</a></li>
+          <li>
+            <a>
+              <div class="custom-control custom-switch">
+                <input type="checkbox" class="custom-control-input" id="darkSwitch" />
+                <label class="custom-control-label" for="darkSwitch">Dark Mode</label>
+              </div>
+              <script src="js/dark-mode-switch.min.js"></script>
+            </a>
+          </li>
+        </ul>
+        <ul class="nav navbar-nav navbar-right">
+          <li>
+            <a href="https://github.com/visualdeath/roomba-controller">
+              <img style="height: 16px;" src="images/github.ico" />
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <div id="container" class="container">
+	  <p>Using the form below will allow you to set a schedule on the Roomba itself. If you are using a home automation system such as Home Assistant you should not set the schedule on the Roomba and instead set the schedule in your home automation system.</p>
+	  <form method="post" action="/api/roomba/schedule">
+		  <div id="scheduler" class="scheduler row seven-cols">
+			  <div id="sunday" class="day col-md-1">
+				  <div class="day-title"><input type="checkbox" name="sunday" value="enable" /> Sunday</div>
+				  <div class="day-time"><input class="time hour" type="number" min="00" max="23" value="00" /> <strong>:</strong> <input class="time minute" type="number" min="00" max="59" value="00" /></div>
+			  </div>
+			  <div id="monday" class="day col-md-1">
+				  <div class="day-title"><input type="checkbox" name="monday" value="enable" /> Monday</div>
+				  <div class="day-time"><input class="time hour" type="number" min="00" max="23" value="00" /> <strong>:</strong> <input class="time minute" type="number" min="00" max="59" value="00" /></div>
+			  </div>
+			  <div id="tuesday" class="day col-md-1">
+				  <div class="day-title"><input type="checkbox" name="tuesday" value="enable" /> Tuesday</div>
+				  <div class="day-time"><input class="time hour" type="number" min="00" max="23" value="00" /> <strong>:</strong> <input class="time minute" type="number" min="00" max="59" value="00" /></div>
+			  </div>
+			  <div id="wednesday" class="day col-md-1">
+				  <div class="day-title"><input type="checkbox" name="wednesday" value="enable" /> Wednesday</div>
+				  <div class="day-time"><input class="time hour" type="number" min="00" max="23" value="00" /> <strong>:</strong> <input class="time minute" type="number" min="00" max="59" value="00" /></div>
+			  </div>
+			  <div id="thursday" class="day col-md-1">
+				  <div class="day-title"><input type="checkbox" name="thursday" value="enable" /> Thursday</div>
+				  <div class="day-time"><input class="time hour" type="number" min="00" max="23" value="00" /> <strong>:</strong> <input class="time minute" type="number" min="00" max="59" value="00" /></div>
+			  </div>
+			  <div id="friday" class="day col-md-1">
+				  <div class="day-title"><input type="checkbox" name="friday" value="enable" /> Friday</div>
+				  <div class="day-time"><input class="time hour" type="number" min="00" max="23" value="00" /> <strong>:</strong> <input class="time minute" type="number" min="00" max="59" value="00" /></div>
+			  </div>
+			  <div id="saturday" class="day col-md-1">
+				  <div class="day-title"><input type="checkbox" name="saterday" value="enable" /> Saturday</div>
+				  <div class="day-time"><input class="time hour" type="number" min="00" max="23" value="00" /> <strong>:</strong> <input class="time minute" type="number" min="00" max="59" value="00" /></div>
+			  </div>
+		  </div>
+		  <div class="scheduler-buttons">
+			  <input class="btn-primary btn-danger" type="button" name="action" value="Reset" /> <input class="btn-primary" type="submit" name="action" value="Save" />
+		  </div>
+	  </form>
+  </div>
+	
+	<div id="templates" style="display: none">
+		<div id="dayTemplate" class="day col-md-1">
+		  <div class="day-title"><input type="checkbox" value="enable" /> </div>
+		  <div class="day-time"><input class="time hour" type="number" min="00" max="23" value="00" /> <strong>:</strong> <input class="time minute" type="number" min="00" max="59" value="00" /></div>
+		</div>
+	</div>
+
+  <!-- request js from the ESP8266 web server -->
+  <script src="js/jquery-3.1.1.min.js"></script>
+  <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
